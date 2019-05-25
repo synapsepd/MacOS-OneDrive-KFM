@@ -1,0 +1,3 @@
+#!/bin/bash
+/usr/local/outset/login-privileged-every/onedrive-kfm.sh
+exit 0

@@ -1,0 +1,14 @@
+{
+    "distribution_style": true,
+    "identifier": "com.cambridgeconsultants.onedrive-kfm",
+    "install_location": "/",
+    "name": "MacOS-OneDrive-KFM-${version}.pkg",
+    "ownership": "recommended",
+    "postinstall_action": "none",
+    "suppress_bundle_relocation": true,
+    "version": "0.1",
+    "signing_info": {
+        "identity": "3rd Party Mac Developer Installer: Synapse Product Development (Z38WX6KZQ6)",
+        "timestamp": true
+    }
+}
