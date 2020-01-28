@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadDescription</key>
+			<string>TCC Whitelist for OutSet</string>
+			<key>PayloadDisplayName</key>
+			<string>OutSet Whitelist</string>
+			<key>PayloadIdentifier</key>
+			<string>com.github.outset.whitelist.CDACB29C-3D60-11EA-A645-ACDE48001122</string>
+			<key>PayloadOrganization</key>
+			<string>GitHub Outset</string>
+			<key>PayloadType</key>
+			<string>com.apple.TCC.configuration-profile-policy</string>
+			<key>PayloadUUID</key>
+			<string>CDACB29C-3D60-11EA-A645-ACDE48001122</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>Services</key>
+			<dict>
+				<key>SystemPolicyAllFiles</key>
+				<array>
+					<dict>
+						<key>Allowed</key>
+						<true/>
+						<key>CodeRequirement</key>
+						<string>identifier "com.apple.python2" and anchor apple</string>
+						<key>Comment</key>
+						<string>Allow SystemPolicyAllFiles control for outset</string>
+						<key>Identifier</key>
+						<string>/usr/local/outset/outset</string>
+						<key>IdentifierType</key>
+						<string>path</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>TCC Whitelist for OutSet</string>
+	<key>PayloadDisplayName</key>
+	<string>OutSet Whitelist</string>
+	<key>PayloadIdentifier</key>
+	<string>com.github.outset.whitelist</string>
+	<key>PayloadOrganization</key>
+	<string>GitHub Outset</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>system</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>CDB3C6E1-3D60-11EA-A5FD-ACDE48001122</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+</dict>
+</plist>
