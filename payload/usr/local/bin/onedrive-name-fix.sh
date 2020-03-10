@@ -57,12 +57,18 @@ Check_Trailing_Chars() {
     cat /tmp/cln.ffn | grep -v ".pkg" | grep -v ".app" >/tmp/fixtrail.ffn
     linecount=$(wc -l /tmp/fixtrail.ffn | awk '{print $1}') >/dev/null 2>&1
     counter=$linecount
-    while ! [ "$counter" == 0 ]; do
-
-        line="$(sed -n ${counter}p /tmp/fixtrail.ffn)"
-        lastChar="$(sed -n ${counter}p /tmp/fixtrail.ffn | grep -Eo '.$')"
+    echo "count: ${counter}"
+    date
+    while read line; do
+        # echo $(($(gdate +%s%N)/1000000))     
+        # line="$(sed -n ${counter}p /tmp/fixtrail.ffn)"
+        # lastChar="$(sed -n ${counter}p /tmp/fixtrail.ffn | grep -Eo '.$')"
+        lastChar="$(echo ${line} | grep -Eo '.$')"
+        # echo $(($(gdate +%s%N)/1000000))     
+        # echo "processing $line counter: $counter"
 
         if [ "$lastChar" == " " ] || [ "$lastChar" == "." ]; then
+            echo "fixing $line"
             name=$(basename "$line")                                              # get the filename we need to change
             path=$(dirname "$line")                                               # dirname to get the path
             fixedname=$(echo "$name" | tr '.' '-' | awk '{sub(/[ \t]+$/, "")};1') # remove/replace the trailing whitespace or period
@@ -72,7 +78,8 @@ Check_Trailing_Chars() {
         fi
 
         let "counter = $counter -1"
-    done
+    done < /tmp/fixtrail.ffn
+    date
 }
 
 Check_Leading_Spaces() {
