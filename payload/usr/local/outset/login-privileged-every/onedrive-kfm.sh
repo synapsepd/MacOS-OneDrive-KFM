@@ -121,8 +121,7 @@ for user in $userList; do
             logger -s -p user.notice "OneDrive-KFM: Moving backup files into proper OneDrive folders for $user."
             #We want to only move files that don't exist in the destination and we want to remove them from the source after we are done moving them
             #Thus the only files left in the backup source should be the ones there were conflicted
-            rsyncResults=$(rsync --checksum --remove-source-files --ignore-existing -avhE "$backupPath/" "$defaultOneDriveFolder/")
-            /usr/sbin/chown -Rv "$user" "$defaultOneDriveFolder" >/dev/null 2>&1
+            rsyncResults=$(rsync --checksum --remove-source-files --ignore-existing -avhE "$backupPath/Desktop/" "$defaultOneDriveFolder/Desktop/"; rsync --checksum --remove-source-files --ignore-existing -avhE "$backupPath/Documents/" "$defaultOneDriveFolder/Documents/")            /usr/sbin/chown -Rv "$user" "$defaultOneDriveFolder" >/dev/null 2>&1
             logger -s -p user.notice "OneDrive-KFM: $rsyncResults"
 
             #Get rid of .ds_store files that are left over, as that will make it look like there are directories with conflicts when there are not
