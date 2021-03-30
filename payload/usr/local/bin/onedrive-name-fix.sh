@@ -60,22 +60,20 @@ Check_Trailing_Chars() {
     echo "count: ${counter}"
     date
     while read line; do
-        # echo $(($(gdate +%s%N)/1000000))     
+        # echo $(($(gdate +%s%N)/1000000))
         # line="$(sed -n ${counter}p /tmp/fixtrail.ffn)"
         # lastChar="$(sed -n ${counter}p /tmp/fixtrail.ffn | grep -Eo '.$')"
-        lastChar="$(echo ${line} | grep -Eo '.$')"
-        # echo $(($(gdate +%s%N)/1000000))     
+        # lastChar="$(echo ${line} | grep -Eo '.$')"
+        # echo $(($(gdate +%s%N)/1000000))
         # echo "processing $line counter: $counter"
 
-        if [ "$lastChar" == " " ] || [ "$lastChar" == "." ]; then
-            echo "fixing $line"
-            name=$(basename "$line")                                              # get the filename we need to change
-            path=$(dirname "$line")                                               # dirname to get the path
-            fixedname=$(echo "$name" | tr '.' '-' | awk '{sub(/[ \t]+$/, "")};1') # remove/replace the trailing whitespace or period
-            echo "'$line' -> '$path/$fixedname'" >>/tmp/allfixed.ffn
-            logger -s -p user.notice "OneDrive-Name-Fix: Trailing Chars - '$line' -> '$path/$fixedname'"
-            mv -f "$line" "$path/$fixedname" # rename the file or folder
-        fi
+        echo "fixing $line"
+        name=$(basename "$line")                                              # get the filename we need to change
+        path=$(dirname "$line")                                               # dirname to get the path
+        fixedname=$(echo "$name" | tr '.' '-' | awk '{sub(/[ \t]+$/, "")};1') # remove/replace the trailing whitespace or period
+        echo "'$line' -> '$path/$fixedname'" >>/tmp/allfixed.ffn
+        logger -s -p user.notice "OneDrive-Name-Fix: Trailing Chars - '$line' -> '$path/$fixedname'"
+        mv -f "$line" "$path/$fixedname" # rename the file or folder
 
         let "counter = $counter -1"
     done < /tmp/fixtrail.ffn
@@ -156,7 +154,8 @@ rm -f /tmp/cln.ffn >/dev/null 2>&1
 
 # Process Trailing Spaces and Periods
 logger -s -p user.notice "OneDrive-Name-Fix: Fixing trailing spaces and periods..."
-find "${pathToClean}" -name "*" >>/tmp/cln.ffn
+find "${pathToClean}" | grep -E '\s$' >>/tmp/cln.ffn
+find "${pathToClean}" | grep -E '\.$' >>/tmp/cln.ffn
 Check_Trailing_Chars
 rm -f /tmp/cln.ffn >/dev/null 2>&1
 
