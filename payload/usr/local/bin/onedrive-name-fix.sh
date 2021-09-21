@@ -59,7 +59,7 @@ Check_Trailing_Chars() {
     counter=$linecount
     echo "count: ${counter}"
     date
-    while read line; do
+    while IFS='' read line; do
         # echo $(($(gdate +%s%N)/1000000))
         # line="$(sed -n ${counter}p /tmp/fixtrail.ffn)"
         # lastChar="$(sed -n ${counter}p /tmp/fixtrail.ffn | grep -Eo '.$')"
